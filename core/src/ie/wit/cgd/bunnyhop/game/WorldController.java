@@ -26,13 +26,12 @@ public class WorldController extends InputAdapter {
 	public Level initCurrLevel;
 	public int lives;
 	public int score;
-	//hii
-
+	public float gameOverTimer = Constants.ITEM_FEATHER_POWERUP_DURATION;
 
 	private void initCurrLevelReset() {
 		if (Constants.currLevel == Constants.LEVEL_01) {
 			score = 0;
-			//level = new Level(Constants.LEVEL_01);
+			// level = new Level(Constants.LEVEL_01);
 			level = new Level(Constants.LEVEL_01);
 			cameraHelper.setTarget(level.bunnyHead);
 		}
@@ -42,25 +41,18 @@ public class WorldController extends InputAdapter {
 			level = new Level(Constants.LEVEL_02);
 			cameraHelper.setTarget(level.bunnyHead);
 		}
-		
+
 		else if (Constants.currLevel == Constants.LEVEL_03) {
 			score = 0;
 
 			level = new Level(Constants.LEVEL_03);
 
-			//level = new level(String.format("levels/level-%02d.png", number));
+			// level = new level(String.format("levels/level-%02d.png", number));
 
 			cameraHelper.setTarget(level.bunnyHead);
 		}
 
 	}
-
-
-	private String toString(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 	private void initCurrLevel() {
 
@@ -174,7 +166,6 @@ public class WorldController extends InputAdapter {
 			break;
 		}
 
-
 		// Test collision: Bunny Head <-> Bunny Lives
 
 		// Test collision: Bunny Head <-> Feathers
@@ -248,7 +239,19 @@ public class WorldController extends InputAdapter {
 	}
 
 	public void update(float deltaTime) {
+		
+	      if (gameOverTimer >= 0) {
+	    	  gameOverTimer -= deltaTime;
+	          if (gameOverTimer < 0) {
+	              // disable power-up
+	        	  gameOverTimer = 0;
+	              init();
+	          }
+	      }
 
+		if (lives > 3) {
+			lives = 3;
+		}
 		deltaTime = MathUtils.clamp(deltaTime, 0f, 0.02f);
 		handleDebugInput(deltaTime);
 		level.update(deltaTime);
@@ -276,7 +279,7 @@ public class WorldController extends InputAdapter {
 			timeLeftGameOverDelay -= deltaTime;
 			if (timeLeftGameOverDelay < 0) {
 				initCurrLevelReset();
-				 init();
+				init();
 			}
 		}
 

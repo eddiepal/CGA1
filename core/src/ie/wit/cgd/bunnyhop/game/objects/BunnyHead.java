@@ -119,6 +119,7 @@ public class BunnyHead extends AbstractGameObject {
               setFeatherPowerup(false);
           }
       }
+     
   }
   
   @Override
