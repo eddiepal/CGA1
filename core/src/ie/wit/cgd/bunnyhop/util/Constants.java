@@ -22,10 +22,9 @@ public class Constants {
     // Duration of feather power-up in seconds
     public static final float ITEM_FEATHER_POWERUP_DURATION = 9;
     
-<<<<<<< HEAD
+
     public static final float GAME_OVER = 120;
     
-=======
->>>>>>> 07a813366386f18043155cdc2833d5cad700e1a6
+
     public static final float TIME_DELAY_GAME_OVER = 3;
 }

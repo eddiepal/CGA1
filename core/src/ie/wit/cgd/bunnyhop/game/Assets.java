@@ -1,9 +1,6 @@
 package ie.wit.cgd.bunnyhop.game;
 import com.badlogic.gdx.Gdx;
-<<<<<<< HEAD
-=======
 
->>>>>>> 07a813366386f18043155cdc2833d5cad700e1a6
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
@@ -27,6 +24,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public AssetLevelDecoration levelDecoration;
     public AssetGoal			goal;
     public AssetBunnyLife	    bunnyLife;
+    public String		bunnyTest;
     
     public AssetFonts           fonts;
 
