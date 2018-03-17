@@ -45,17 +45,24 @@ public class WorldController extends InputAdapter {
 		
 		else if (Constants.currLevel == Constants.LEVEL_03) {
 			score = 0;
+<<<<<<< HEAD
 			level = new Level(Constants.LEVEL_03);
+=======
+			//level = new level(String.format("levels/level-%02d.png", number));
+>>>>>>> 07a813366386f18043155cdc2833d5cad700e1a6
 			cameraHelper.setTarget(level.bunnyHead);
 		}
 
 	}
 
+<<<<<<< HEAD
 	private String toString(String string) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+=======
+>>>>>>> 07a813366386f18043155cdc2833d5cad700e1a6
 	private void initCurrLevel() {
 
 		if (Constants.currLevel == Constants.LEVEL_01) {
@@ -168,7 +175,11 @@ public class WorldController extends InputAdapter {
 			break;
 		}
 
+<<<<<<< HEAD
 		// Test collision: Bunny Head <-> Bunny Lives
+=======
+		// Test collision: Bunny Head <-> Feathers
+>>>>>>> 07a813366386f18043155cdc2833d5cad700e1a6
 		for (BunnyLife bunnyLife : level.bunnyLives) {
 			if (bunnyLife.collected)
 				continue;
