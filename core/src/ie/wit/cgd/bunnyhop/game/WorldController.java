@@ -26,7 +26,7 @@ public class WorldController extends InputAdapter {
 	public Level initCurrLevel;
 	public int lives;
 	public int score;
-	
+	//hii
 
 
 	private void initCurrLevelReset() {
