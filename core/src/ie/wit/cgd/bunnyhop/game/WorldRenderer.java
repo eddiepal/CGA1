@@ -159,4 +159,8 @@ public class WorldRenderer implements Disposable {
             Assets.instance.fonts.defaultSmall.draw(batch, "" + (int) timeLeftFeatherPowerup, x + 60, y + 57);
         }
     }
+    
+    private void renderGuiGameOverTimer(SpriteBatch batch) {
+    	
+    }
 }

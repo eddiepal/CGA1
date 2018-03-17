@@ -244,7 +244,7 @@ public class WorldController extends InputAdapter {
 	    	  gameOverTimer -= deltaTime;
 	          if (gameOverTimer < 0) {
 	              // disable power-up
-	        	  gameOverTimer = 0;
+	        	  gameOverTimer = Constants.ITEM_FEATHER_POWERUP_DURATION;
 	              init();
 	          }
 	      }
