@@ -24,6 +24,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public AssetLevelDecoration levelDecoration;
     public AssetGoal			goal;
     public AssetBunnyLife	    bunnyLife;
+    public AssetBird	        bird;
     
     public AssetFonts           fonts;
 
@@ -68,6 +69,14 @@ public class Assets implements Disposable, AssetErrorListener {
         public AssetRock(TextureAtlas atlas) {
             edge = atlas.findRegion("rock_edge");
             middle = atlas.findRegion("rock_middle");
+        }
+    }
+    
+    public class AssetBird {
+        public final AtlasRegion    bird;
+
+        public AssetBird(TextureAtlas atlas) {
+            bird = atlas.findRegion("Starling-flying");
         }
     }
     
@@ -150,6 +159,7 @@ public class Assets implements Disposable, AssetErrorListener {
         levelDecoration = new AssetLevelDecoration(atlas);
         goal = new AssetGoal(atlas);
         bunnyLife = new AssetBunnyLife(atlas);
+        bird = new AssetBird(atlas);
     }
 
     @Override

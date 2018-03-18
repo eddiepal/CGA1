@@ -12,6 +12,7 @@ import ie.wit.cgd.bunnyhop.game.objects.BunnyLife;
 import ie.wit.cgd.bunnyhop.game.objects.Clouds;
 import ie.wit.cgd.bunnyhop.game.objects.Feather;
 import ie.wit.cgd.bunnyhop.game.objects.Goal;
+import ie.wit.cgd.bunnyhop.game.objects.Bird;
 import ie.wit.cgd.bunnyhop.game.objects.GoldCoin;
 import ie.wit.cgd.bunnyhop.game.objects.Mountains;
 import ie.wit.cgd.bunnyhop.game.objects.Rock;
@@ -24,6 +25,7 @@ public class Level {
     
     public BunnyHead bunnyHead;
     public Goal goal;
+    public Array<Bird> birds;
     public Array<GoldCoin> goldCoins;
     public Array<Feather> feathers;
     public Array<BunnyLife> bunnyLives;
@@ -35,7 +37,8 @@ public class Level {
         ITEM_FEATHER(255, 0, 255),        // purple
         ITEM_GOLD_COIN(255, 255, 0),      // yellow
     	ITEM_GOAL(255, 0, 0),			  // red
-    	ITEM_BUNNY_LIFE(0, 0, 255);		  // blue
+    	ITEM_BUNNY_LIFE(0, 0, 255),		  // blue
+    	Bird(0, 255, 255);				  //
 
         private int color;
 
@@ -75,6 +78,7 @@ public class Level {
         goal = null;
 
         // objects
+        birds = new Array<Bird>();
         rocks = new Array<Rock>();
         goldCoins = new Array<GoldCoin>();
         feathers = new Array<Feather>();
@@ -131,6 +135,11 @@ public class Level {
                     offsetHeight = -2f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     bunnyLives.add((BunnyLife)obj);
+                }else if (BLOCK_TYPE.Bird.sameColor(currentPixel)) {          // goal
+                    obj = new Bird();
+                    offsetHeight = 0f;
+                    obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
+                    birds.add((Bird)obj);
                 } else {                                                                    // unknown object/pixel color
                    // ...
                 }
@@ -195,6 +204,8 @@ public class Level {
         clouds.update(deltaTime);
         goal.update(deltaTime);
         mountains.update(deltaTime);
+        for (Bird bird: birds)
+        	bird.update(deltaTime);
         for (Rock rock : rocks)
             rock.update(deltaTime);
         for (GoldCoin goldCoin : goldCoins)
@@ -217,6 +228,8 @@ public class Level {
 			feather.render(batch);
 		for (BunnyLife bunnyLife : bunnyLives) // Draw Bunny Lives
 			bunnyLife.render(batch);
+		for (Bird bird : birds) // Draw Feathers
+			bird.render(batch);
 		bunnyHead.render(batch); // Draw Player Character
 		goal.render(batch); // Draw goal item
 		waterOverlay.render(batch); // Draw Water Overlay

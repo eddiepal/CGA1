@@ -108,6 +108,8 @@ public class WorldRenderer implements Disposable {
         renderGuiGameOverMessage(batch);
         
         renderGuiFeatherPowerup(batch);
+        
+        renderGuiGameOverTimer(batch);
         batch.end();
     }
 
@@ -141,6 +143,13 @@ public class WorldRenderer implements Disposable {
         }
     }
     
+    private void renderGuiGameOverTimer(SpriteBatch batch) {
+        float x = 0;
+        float y = 0;
+    	float gameOverTimer = worldController.gameOverTimer;
+    	Assets.instance.fonts.defaultBig.draw(batch, "Timer: " + (int) gameOverTimer, x + 150, y + 23);
+    }
+    
     private void renderGuiFeatherPowerup(SpriteBatch batch) {
         float x = -15;
         float y = 30;
@@ -156,11 +165,7 @@ public class WorldRenderer implements Disposable {
             }
             batch.draw(Assets.instance.feather.feather, x, y, 50, 50, 100, 100, 0.35f, -0.35f, 0);
             batch.setColor(1, 1, 1, 1);
-            Assets.instance.fonts.defaultSmall.draw(batch, "" + (int) timeLeftFeatherPowerup, x + 60, y + 57);
+            Assets.instance.fonts.defaultNormal.draw(batch, "test: " + (int) timeLeftFeatherPowerup, x + 60, y + 57);
         }
-    }
-    
-    private void renderGuiGameOverTimer(SpriteBatch batch) {
-    	
     }
 }
