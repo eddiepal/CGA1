@@ -24,11 +24,9 @@ public class Assets implements Disposable, AssetErrorListener {
     public AssetLevelDecoration levelDecoration;
     public AssetGoal			goal;
     public AssetBunnyLife	    bunnyLife;
-<<<<<<< HEAD
-=======
     public AssetBird	        bird;
     
->>>>>>> 1b764ae5d57b70b7ca341a427df0d74ef21bc8ad
+
     public AssetFonts           fonts;
 
     public class AssetFonts {
