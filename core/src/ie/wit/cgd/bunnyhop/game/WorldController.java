@@ -25,6 +25,7 @@ public class WorldController extends InputAdapter {
 	public Level currLevel;
 	public Level initCurrLevelReset;
 	public Level initCurrLevel;
+	public Bird bird;
 	public int lives;
 	public int score;
 	public float gameOverTimer = Constants.GAME_OVER_TIMER;
@@ -346,7 +347,10 @@ public class WorldController extends InputAdapter {
 	private float timeLeftGameOverDelay;
 
 	public boolean isGameOver() {
-		return lives <= 0;
+		if(lives <= 0 || bird.collected == true) {
+			return true;
+		}
+		return false;
 	}
 
 	public boolean isGameWon() {
