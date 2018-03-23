@@ -9,6 +9,7 @@ import ie.wit.cgd.bunnyhop.game.objects.Feather;
 import ie.wit.cgd.bunnyhop.game.objects.Goal;
 import ie.wit.cgd.bunnyhop.game.objects.GoldCoin;
 import ie.wit.cgd.bunnyhop.game.objects.Rock;
+import ie.wit.cgd.bunnyhop.game.objects.Bird;
 import ie.wit.cgd.bunnyhop.util.CameraHelper;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
@@ -26,17 +27,20 @@ public class WorldController extends InputAdapter {
 	public Level initCurrLevel;
 	public int lives;
 	public int score;
+<<<<<<< HEAD
 	public float gameOverTimer = Constants.ITEM_FEATHER_POWERUP_DURATION;
 	
 	public WorldController() {
 
 		init();
 	}
+=======
+	public float gameOverTimer = Constants.GAME_OVER_TIMER;
+>>>>>>> f513a203e9cae4c07bc534489ce20c7b792e006d
 
 	private void initCurrLevelReset() {
 		if (Constants.currLevel == Constants.LEVEL_01) {
 			score = 0;
-			// level = new Level(Constants.LEVEL_01);
 			level = new Level(Constants.LEVEL_01);
 			cameraHelper.setTarget(level.bunnyHead);
 		}
@@ -49,11 +53,8 @@ public class WorldController extends InputAdapter {
 
 		else if (Constants.currLevel == Constants.LEVEL_03) {
 			score = 0;
-
 			level = new Level(Constants.LEVEL_03);
-
 			// level = new level(String.format("levels/level-%02d.png", number));
-
 			cameraHelper.setTarget(level.bunnyHead);
 		}
 
@@ -122,6 +123,12 @@ public class WorldController extends InputAdapter {
 		lives++;
 		Gdx.app.log(TAG, "Feather collected");
 	};
+	
+	private void onCollisionBunnyWithBird(Bird bird) {
+		bird.collected = true;
+		lives++;
+		Gdx.app.log(TAG, "Feather collected");
+	};
 
 	private void onCollisionBunnyWithGoal(Goal goal) {
 		goal.collected = true;
@@ -159,6 +166,16 @@ public class WorldController extends InputAdapter {
 			onCollisionBunnyWithGoldCoin(goldCoin);
 			break;
 		}
+		
+		// Test collision: Bunny Head <-> Birds
+		for (Bird bird : level.birds) {
+			if (bird.collected)
+				continue;
+			r2.set(bird.position.x, bird.position.y, bird.bounds.width, bird.bounds.height);
+			if (!r1.overlaps(r2))
+				continue;
+			onCollisionBunnyWithBird(bird);
+		}
 
 		// Test collision: Bunny Head <-> Feathers
 		for (Feather feather : level.feathers) {
@@ -172,9 +189,6 @@ public class WorldController extends InputAdapter {
 		}
 
 		// Test collision: Bunny Head <-> Bunny Lives
-
-		// Test collision: Bunny Head <-> Feathers
-
 		for (BunnyLife bunnyLife : level.bunnyLives) {
 			if (bunnyLife.collected)
 				continue;
@@ -280,8 +294,13 @@ public class WorldController extends InputAdapter {
 			timeLeftGameOverDelay -= deltaTime;
 			if (timeLeftGameOverDelay < 0) {
 				initCurrLevelReset();
-				init();
+				//init();
 			}
+		}
+		
+		if(Gdx.input.isKeyPressed(Keys.F1)){
+			Constants.currLevel = Constants.LEVEL_01;
+			initCurrLevelReset();
 		}
 
 	}

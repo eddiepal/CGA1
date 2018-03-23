@@ -26,6 +26,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public AssetBunnyLife	    bunnyLife;
     public AssetBird	        bird;
     
+
     public AssetFonts           fonts;
 
     public class AssetFonts {
