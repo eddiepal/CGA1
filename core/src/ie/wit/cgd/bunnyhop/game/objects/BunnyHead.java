@@ -1,7 +1,6 @@
 package ie.wit.cgd.bunnyhop.game.objects;
 
 import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import ie.wit.cgd.bunnyhop.game.Assets;

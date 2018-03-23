@@ -27,6 +27,11 @@ public class WorldController extends InputAdapter {
 	public int lives;
 	public int score;
 	public float gameOverTimer = Constants.ITEM_FEATHER_POWERUP_DURATION;
+	
+	public WorldController() {
+
+		init();
+	}
 
 	private void initCurrLevelReset() {
 		if (Constants.currLevel == Constants.LEVEL_01) {
@@ -185,10 +190,6 @@ public class WorldController extends InputAdapter {
 			r2.set(goal.position.x, goal.position.y, goal.bounds.width, goal.bounds.height);
 		if (r1.overlaps(r2))
 			onCollisionBunnyWithGoal(goal);
-	}
-
-	public WorldController() {
-		init();
 	}
 
 	private void handleInputGame(float deltaTime) {
