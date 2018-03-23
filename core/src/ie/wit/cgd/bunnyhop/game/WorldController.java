@@ -27,16 +27,16 @@ public class WorldController extends InputAdapter {
 	public Level initCurrLevel;
 	public int lives;
 	public int score;
-<<<<<<< HEAD
-	public float gameOverTimer = Constants.ITEM_FEATHER_POWERUP_DURATION;
+	public float gameOverTimer = Constants.GAME_OVER_TIMER;
+
 	
 	public WorldController() {
 
 		init();
 	}
-=======
-	public float gameOverTimer = Constants.GAME_OVER_TIMER;
->>>>>>> f513a203e9cae4c07bc534489ce20c7b792e006d
+
+
+
 
 	private void initCurrLevelReset() {
 		if (Constants.currLevel == Constants.LEVEL_01) {
