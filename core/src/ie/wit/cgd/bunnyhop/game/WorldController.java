@@ -260,7 +260,7 @@ public class WorldController extends InputAdapter {
 	    	  gameOverTimer -= deltaTime;
 	          if (gameOverTimer < 0) {
 	              // disable power-up
-	        	  gameOverTimer = Constants.ITEM_FEATHER_POWERUP_DURATION;
+	        	  gameOverTimer = Constants.GAME_OVER_TIMER;
 	              init();
 	          }
 	      }
@@ -352,7 +352,7 @@ public class WorldController extends InputAdapter {
 	private float timeLeftGameOverDelay;
 
 	public boolean isGameOver() {
-		if(lives <= 0 || bird.collected == true) {
+		if(lives <= 0) {
 			return true;
 		}
 		return false;

@@ -146,8 +146,10 @@ public class WorldRenderer implements Disposable {
     private void renderGuiGameOverTimer(SpriteBatch batch) {
         float x = 0;
         float y = 0;
+        if(Constants.currLevel == Constants.LEVEL_02) {
     	float gameOverTimer = worldController.gameOverTimer;
     	Assets.instance.fonts.defaultBig.draw(batch, "Timer: " + (int) gameOverTimer, x + 150, y + 23);
+        }
     }
     
     private void renderGuiFeatherPowerup(SpriteBatch batch) {

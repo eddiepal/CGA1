@@ -151,32 +151,32 @@ public class Level {
                     // do nothing
                 } else if (BLOCK_TYPE.ROCK.sameColor(currentPixel)) {                       // rock
                     obj = new Rock();
-                    offsetHeight = -3.9f;
+                    offsetHeight = -12f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y+ offsetHeight);
                     rocks.add((Rock)obj);
                 } else if (BLOCK_TYPE.PLAYER_SPAWNPOINT.sameColor(currentPixel)) {          // player spawn point
                     obj = new BunnyHead();
-                    offsetHeight = -0f;
+                    offsetHeight = -8f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     bunnyHead = (BunnyHead)obj;
                 } else if(BLOCK_TYPE.ITEM_FEATHER.sameColor(currentPixel)) {                // feather
                     obj = new Feather();
-                    offsetHeight = 8f;
+                    offsetHeight = 0f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y+ offsetHeight);
                     feathers.add((Feather)obj);
                 } else if (BLOCK_TYPE.ITEM_GOLD_COIN.sameColor(currentPixel)) {             // gold coin
                     obj = new GoldCoin();
-                    offsetHeight = 5;
+                    offsetHeight = -3;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     goldCoins.add((GoldCoin)obj);
                 }else if (BLOCK_TYPE.ITEM_GOAL.sameColor(currentPixel)) {          // goal
                     obj = new Goal();
-                    offsetHeight = 0f;
+                    offsetHeight = -8f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     goal = (Goal)obj;
                 }else if (BLOCK_TYPE.ITEM_BUNNY_LIFE.sameColor(currentPixel)) {          // bunny Life
                     obj = new BunnyLife();
-                    offsetHeight = -2f;
+                    offsetHeight = -6f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     bunnyLives.add((BunnyLife)obj);
                 } else {                                                                    // unknown object/pixel color
