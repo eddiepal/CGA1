@@ -1,11 +1,9 @@
 package ie.wit.cgd.bunnyhop.game;
 
 import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-
 import ie.wit.cgd.bunnyhop.game.objects.AbstractGameObject;
 import ie.wit.cgd.bunnyhop.game.objects.BunnyHead;
 import ie.wit.cgd.bunnyhop.game.objects.BunnyLife;
@@ -14,6 +12,7 @@ import ie.wit.cgd.bunnyhop.game.objects.Feather;
 import ie.wit.cgd.bunnyhop.game.objects.Goal;
 import ie.wit.cgd.bunnyhop.game.objects.Bird;
 import ie.wit.cgd.bunnyhop.game.objects.GoldCoin;
+import ie.wit.cgd.bunnyhop.game.objects.Gun;
 import ie.wit.cgd.bunnyhop.game.objects.Mountains;
 import ie.wit.cgd.bunnyhop.game.objects.Rock;
 import ie.wit.cgd.bunnyhop.game.objects.WaterOverlay;
@@ -25,6 +24,7 @@ public class Level {
     
     public BunnyHead bunnyHead;
     public Goal goal;
+    public Gun gun;
     public Array<Bird> birds;
     public Array<GoldCoin> goldCoins;
     public Array<Feather> feathers;
@@ -38,7 +38,8 @@ public class Level {
         ITEM_GOLD_COIN(255, 255, 0),      // yellow
     	ITEM_GOAL(255, 0, 0),			  // red
     	ITEM_BUNNY_LIFE(0, 0, 255),		  // blue
-    	Bird(0, 255, 255);				  //
+    	Bird(0, 255, 255),				  //
+    	Gun(255, 140, 0);				  // orange
 
         private int color;
 
@@ -135,6 +136,11 @@ public class Level {
                     offsetHeight = -2f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     bunnyLives.add((BunnyLife)obj);
+                }else if (BLOCK_TYPE.Gun.sameColor(currentPixel)) {          // goal
+                    obj = new Gun();
+                    offsetHeight = -8f;
+                    obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
+                    gun = (Gun)obj;
                 }else if (BLOCK_TYPE.Bird.sameColor(currentPixel)) {          // goal
                     obj = new Bird();
                     offsetHeight = 0f;
@@ -179,11 +185,60 @@ public class Level {
                     offsetHeight = -6f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     bunnyLives.add((BunnyLife)obj);
+                }else if (BLOCK_TYPE.Gun.sameColor(currentPixel)) {          // goal
+                    obj = new Gun();
+                    offsetHeight = -8f;
+                    obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
+                    gun = (Gun)obj;
                 } else {                                                                    // unknown object/pixel color
                    // ...
                 }
                 lastPixel = currentPixel;
 				}
+                
+                else if(Constants.currLevel == Constants.LEVEL_03) {
+                    if (BLOCK_TYPE.EMPTY.sameColor(currentPixel)) {                             // empty space
+                        // do nothing
+                    } else if (BLOCK_TYPE.ROCK.sameColor(currentPixel)) {                       // rock
+                        obj = new Rock();
+                        offsetHeight = -12f;
+                        obj.position.set(pixelX,baseHeight * obj.dimension.y+ offsetHeight);
+                        rocks.add((Rock)obj);
+                    } else if (BLOCK_TYPE.PLAYER_SPAWNPOINT.sameColor(currentPixel)) {          // player spawn point
+                        obj = new BunnyHead();
+                        offsetHeight = -8f;
+                        obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
+                        bunnyHead = (BunnyHead)obj;
+                    } else if(BLOCK_TYPE.ITEM_FEATHER.sameColor(currentPixel)) {                // feather
+                        obj = new Feather();
+                        offsetHeight = 0f;
+                        obj.position.set(pixelX,baseHeight * obj.dimension.y+ offsetHeight);
+                        feathers.add((Feather)obj);
+                    } else if (BLOCK_TYPE.ITEM_GOLD_COIN.sameColor(currentPixel)) {             // gold coin
+                        obj = new GoldCoin();
+                        offsetHeight = -3;
+                        obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
+                        goldCoins.add((GoldCoin)obj);
+                    }else if (BLOCK_TYPE.ITEM_GOAL.sameColor(currentPixel)) {          // goal
+                        obj = new Goal();
+                        offsetHeight = -8f;
+                        obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
+                        goal = (Goal)obj;
+                    }else if (BLOCK_TYPE.ITEM_BUNNY_LIFE.sameColor(currentPixel)) {          // bunny Life
+                        obj = new BunnyLife();
+                        offsetHeight = -6f;
+                        obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
+                        bunnyLives.add((BunnyLife)obj);
+                    }else if (BLOCK_TYPE.Gun.sameColor(currentPixel)) {          // goal
+                        obj = new Gun();
+                        offsetHeight = -8f;
+                        obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
+                        gun = (Gun)obj;
+                    } else {                                                                    // unknown object/pixel color
+                       // ...
+                    }
+                    lastPixel = currentPixel;
+    				}
 			}
 		}
         // decoration
@@ -204,6 +259,7 @@ public class Level {
         clouds.update(deltaTime);
         goal.update(deltaTime);
         mountains.update(deltaTime);
+        gun.update(deltaTime);
         for (Bird bird: birds)
         	bird.update(deltaTime);
         for (Rock rock : rocks)
@@ -234,5 +290,6 @@ public class Level {
 		goal.render(batch); // Draw goal item
 		waterOverlay.render(batch); // Draw Water Overlay
 		clouds.render(batch); // Draw Clouds
+		gun.render(batch); // Draw Gun
 	}
 }

@@ -23,6 +23,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public AssetFeather         feather;
     public AssetLevelDecoration levelDecoration;
     public AssetGoal			goal;
+    public AssetGun				gun;
     public AssetBunnyLife	    bunnyLife;
     public AssetBird	        bird;
     
@@ -97,6 +98,14 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
     
+    public class AssetGun {
+    	public final AtlasRegion	gun;
+    	
+    	public AssetGun(TextureAtlas atlas) {
+    		gun = atlas.findRegion("gun");
+    	}
+    }
+    	
     public class AssetBunnyLife {
         public final AtlasRegion    bunnyLife;
 
@@ -112,6 +121,7 @@ public class Assets implements Disposable, AssetErrorListener {
             feather = atlas.findRegion("item_feather");
         }
     }
+    
     
     public class AssetLevelDecoration {
         public final AtlasRegion    cloud01;
@@ -159,6 +169,7 @@ public class Assets implements Disposable, AssetErrorListener {
         feather = new AssetFeather(atlas);
         levelDecoration = new AssetLevelDecoration(atlas);
         goal = new AssetGoal(atlas);
+        gun = new AssetGun(atlas);
         bunnyLife = new AssetBunnyLife(atlas);
         bird = new AssetBird(atlas);
     }

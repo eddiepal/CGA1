@@ -4,121 +4,128 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Starling-flying
-  rotate: false
-  xy: 718, 306
-  size: 250, 250
-  orig: 250, 250
-  offset: 0, 0
-  index: -1
-bunny_head
-  rotate: false
-  xy: 869, 222
-  size: 122, 82
-  orig: 122, 82
-  offset: 0, 0
-  index: -1
-bunny_head_life
-  rotate: false
-  xy: 869, 222
-  size: 122, 82
-  orig: 122, 82
-  offset: 0, 0
-  index: -1
 cloud02
   rotate: false
-  xy: 669, 216
+  xy: 804, 556
   size: 198, 88
   orig: 198, 88
   offset: 0, 0
   index: -1
-goal
+cloud03
   rotate: false
-  xy: 516, 3
-  size: 200, 195
-  orig: 200, 195
+  xy: 804, 469
+  size: 182, 85
+  orig: 182, 85
   offset: 0, 0
   index: -1
-heart
+gun
   rotate: false
-  xy: 718, 22
-  size: 212, 192
-  orig: 212, 192
-  offset: 0, 0
-  index: -1
-ic_launcher
-  rotate: false
-  xy: 2, 44
-  size: 512, 512
-  orig: 512, 512
+  xy: 2, 456
+  size: 800, 546
+  orig: 800, 546
   offset: 0, 0
   index: -1
 item_feather
   rotate: false
-  xy: 2, 2
+  xy: 957, 742
   size: 46, 40
   orig: 46, 40
   offset: 0, 0
   index: -1
 item_gold_coin
   rotate: false
-  xy: 932, 164
+  xy: 957, 784
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 mountain_left
   rotate: false
-  xy: 2, 785
+  xy: 2, 229
   size: 1000, 225
   orig: 1000, 225
   offset: 0, 0
   index: -1
 mountain_right
   rotate: false
-  xy: 2, 558
+  xy: 2, 2
   size: 1000, 225
   orig: 1000, 225
   offset: 0, 0
   index: -1
 rock_edge
   rotate: false
-  xy: 604, 200
+  xy: 892, 646
   size: 63, 356
   orig: 63, 356
   offset: 0, 0
   index: -1
 rock_middle
   rotate: false
-  xy: 516, 200
+  xy: 804, 646
   size: 86, 356
   orig: 86, 356
   offset: 0, 0
   index: -1
 water_overlay
   rotate: false
-  xy: 669, 396
+  xy: 957, 842
   size: 32, 160
   orig: 32, 160
   offset: 0, 0
   index: -1
 
 bunnyhop2.png
-size: 512,128
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Starling-flying
+  rotate: false
+  xy: 2, 199
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+bunny_head
+  rotate: false
+  xy: 516, 687
+  size: 122, 82
+  orig: 122, 82
+  offset: 0, 0
+  index: -1
+bunny_head_life
+  rotate: false
+  xy: 516, 687
+  size: 122, 82
+  orig: 122, 82
+  offset: 0, 0
+  index: -1
 cloud01
   rotate: false
-  xy: 186, 9
+  xy: 254, 371
   size: 178, 78
   orig: 178, 78
   offset: 0, 0
   index: -1
-cloud03
+goal
   rotate: false
   xy: 2, 2
-  size: 182, 85
-  orig: 182, 85
+  size: 200, 195
+  orig: 200, 195
+  offset: 0, 0
+  index: -1
+heart
+  rotate: false
+  xy: 516, 771
+  size: 212, 192
+  orig: 212, 192
+  offset: 0, 0
+  index: -1
+ic_launcher
+  rotate: false
+  xy: 2, 451
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: -1
