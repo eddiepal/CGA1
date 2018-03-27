@@ -65,4 +65,9 @@ public class BunnyHopMain extends ApplicationAdapter {
         worldRenderer.dispose();
         Assets.instance.dispose();
     }
+
+	public static String getTag() {
+		return TAG;
+	}
+
 }

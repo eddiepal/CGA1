@@ -19,14 +19,9 @@ public class Constants {
 
     public static final int LIVES_START                 = 3;            // Amount of extra lives at level start
     
-    // Duration of feather power-up in seconds
+    // Timers
     public static final float ITEM_FEATHER_POWERUP_DURATION = 9;
-    
     public static final float GAME_OVER_TIMER = 120;
-    
-
-    public static final float GAME_OVER = 120;
-    
-
+    public static final float COIN_TIMER = 4;
     public static final float TIME_DELAY_GAME_OVER = 3;
 }

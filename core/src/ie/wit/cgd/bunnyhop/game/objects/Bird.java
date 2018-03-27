@@ -1,12 +1,8 @@
 package ie.wit.cgd.bunnyhop.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 import ie.wit.cgd.bunnyhop.game.Assets;
-import ie.wit.cgd.bunnyhop.game.objects.BunnyHead.VIEW_DIRECTION;
-import ie.wit.cgd.bunnyhop.util.Constants;
 
 public class Bird extends AbstractGameObject {
 	

@@ -1,11 +1,8 @@
 package ie.wit.cgd.bunnyhop.game.objects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import ie.wit.cgd.bunnyhop.game.Assets;
-import ie.wit.cgd.bunnyhop.game.WorldController;
-import ie.wit.cgd.bunnyhop.game.WorldRenderer;
 import ie.wit.cgd.bunnyhop.util.Constants;
 
 public class BunnyHead extends AbstractGameObject {
@@ -44,16 +41,21 @@ public class BunnyHead extends AbstractGameObject {
         origin.set(dimension.x / 2, dimension.y / 2);         // Center image on game object
 
         bounds.set(0, 0, dimension.x, dimension.y);           // Bounding box for collision detection
-
-        terminalVelocity.set(4.0f, 8.0f);                     // Set physics values
-        friction.set(12.0f, 0f);
+        terminalVelocity.set(3.0f, 6.0f);                     // Set physics values
+        friction.set(12.0f, 0.0f);
         acceleration.set(0.0f, -25.0f);
+
+/*        terminalVelocity.set(4.0f, 8.0f);                     // Set physics values
+        friction.set(12.0f, 0f);
+        acceleration.set(0.0f, -25.0f);*/
 
         viewDirection = VIEW_DIRECTION.RIGHT;                 // View direction
 
         jumpState = JUMP_STATE.FALLING;                       // Jump state
         timeJumping = 0;
 
+
+        
         hasFeatherPowerup = false;                            // Power-ups
         //timeLeftFeatherPowerup = 10.0f;
   };

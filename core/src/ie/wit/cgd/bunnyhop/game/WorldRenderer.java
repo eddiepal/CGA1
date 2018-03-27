@@ -1,14 +1,12 @@
 package ie.wit.cgd.bunnyhop.game;
+
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
 import ie.wit.cgd.bunnyhop.util.Constants;
-import java.awt.FlowLayout;
-import java.math.*;
 
 public class WorldRenderer implements Disposable {
 
@@ -104,18 +102,17 @@ public class WorldRenderer implements Disposable {
 
         // draw FPS text (anchored to bottom right edge)
         renderGuiFpsCounter(batch);
-        
         renderGuiGameOverMessage(batch);
-        
         renderGuiFeatherPowerup(batch);
-        
         renderGuiGameOverTimer(batch);
+        renderNeedCoins(batch);
         batch.end();
     }
 
     public void render() {
     renderWorld(batch);
     renderGui(batch);
+    
 }
 
 
@@ -150,6 +147,19 @@ public class WorldRenderer implements Disposable {
     	float gameOverTimer = worldController.gameOverTimer;
     	Assets.instance.fonts.defaultBig.draw(batch, "Timer: " + (int) gameOverTimer, x + 150, y + 23);
         }
+    }
+    
+    private void renderNeedCoins(SpriteBatch batch) {
+        float x = 0;
+        float y = 0;
+    	//float gameOverTimer = worldController.gameOverTimer;
+        if(worldController.crazy == false) {
+    	Assets.instance.fonts.defaultNormal.draw(batch, "You need 1000 coins!", x + 250, y + 175);
+
+
+        }
+    	if(worldController.coinTimer <= 0)
+            worldController.crazy = true;
     }
     
     private void renderGuiFeatherPowerup(SpriteBatch batch) {

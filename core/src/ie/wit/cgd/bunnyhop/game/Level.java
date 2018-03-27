@@ -38,7 +38,7 @@ public class Level {
         ITEM_GOLD_COIN(255, 255, 0),      // yellow
     	ITEM_GOAL(255, 0, 0),			  // red
     	ITEM_BUNNY_LIFE(0, 0, 255),		  // blue
-    	Bird(0, 255, 255),				  //
+    	Bird(0, 255, 255),				  // cyan blue
     	Gun(255, 140, 0);				  // orange
 
         private int color;
@@ -88,7 +88,8 @@ public class Level {
         // load image file that represents the level data
         Pixmap pixmap = new Pixmap(Gdx.files.internal(filename));
         // scan pixels from top-left to bottom-right
-        int lastPixel = -1;
+        @SuppressWarnings("unused")
+		int lastPixel = -1;
         
   
         for (int pixelY = 0; pixelY < pixmap.getHeight(); pixelY++) {
@@ -136,14 +137,14 @@ public class Level {
                     offsetHeight = -2f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     bunnyLives.add((BunnyLife)obj);
-                }else if (BLOCK_TYPE.Gun.sameColor(currentPixel)) {          // goal
+                }else if (BLOCK_TYPE.Gun.sameColor(currentPixel)) {          // gun
                     obj = new Gun();
                     offsetHeight = -8f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     gun = (Gun)obj;
-                }else if (BLOCK_TYPE.Bird.sameColor(currentPixel)) {          // goal
+                }else if (BLOCK_TYPE.Bird.sameColor(currentPixel)) {          // bird
                     obj = new Bird();
-                    offsetHeight = 0f;
+                    offsetHeight = -1f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     birds.add((Bird)obj);
                 } else {                                                                    // unknown object/pixel color
@@ -180,12 +181,12 @@ public class Level {
                     offsetHeight = -8f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     goal = (Goal)obj;
-                }else if (BLOCK_TYPE.ITEM_BUNNY_LIFE.sameColor(currentPixel)) {          // bunny Life
+                }else if (BLOCK_TYPE.ITEM_BUNNY_LIFE.sameColor(currentPixel)) {        // bunny Life
                     obj = new BunnyLife();
                     offsetHeight = -6f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);
                     bunnyLives.add((BunnyLife)obj);
-                }else if (BLOCK_TYPE.Gun.sameColor(currentPixel)) {          // goal
+                }else if (BLOCK_TYPE.Gun.sameColor(currentPixel)) {          // gun
                     obj = new Gun();
                     offsetHeight = -8f;
                     obj.position.set(pixelX,baseHeight * obj.dimension.y + offsetHeight);

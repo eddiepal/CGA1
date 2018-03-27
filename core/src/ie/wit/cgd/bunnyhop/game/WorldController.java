@@ -1,6 +1,5 @@
 package ie.wit.cgd.bunnyhop.game;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import ie.wit.cgd.bunnyhop.game.objects.BunnyHead;
 import ie.wit.cgd.bunnyhop.game.objects.BunnyHead.JUMP_STATE;
@@ -30,6 +29,8 @@ public class WorldController extends InputAdapter {
 	public int score;
 	public int birdCount;
 	public float gameOverTimer = Constants.GAME_OVER_TIMER;
+	public float coinTimer = Constants.COIN_TIMER;
+	public boolean crazy = true;
 
 	public WorldController() {
 		init();
@@ -43,6 +44,7 @@ public class WorldController extends InputAdapter {
 		}
 
 		else if (Constants.currLevel == Constants.LEVEL_02) {
+			gameOverTimer = 120;
 			level = new Level(Constants.LEVEL_02);
 		}
 
@@ -129,6 +131,9 @@ public class WorldController extends InputAdapter {
 			level.bunnyHead.setIsGameWon(true);
 			Gdx.app.log(TAG, "Goal Collected");
 			timeLeftGameOverDelay = Constants.TIME_DELAY_GAME_OVER;
+		}
+		else {
+			crazy = false;
 		}
 	};
 
@@ -249,7 +254,21 @@ public class WorldController extends InputAdapter {
 
 	public void update(float deltaTime) {
 
-		if (gameOverTimer >= 0) {
+		/*		deltaTime = MathUtils.clamp(deltaTime, 0f, 0.05f);*/
+		handleDebugInput(deltaTime);
+		level.update(deltaTime);
+		testCollisions();
+		cameraHelper.update(deltaTime);
+		
+		
+		if (coinTimer >=0 && crazy == false) {
+			coinTimer -= deltaTime;
+		}
+		else {
+			coinTimer=Constants.COIN_TIMER;
+		}
+		
+		if (gameOverTimer >= 0 && Constants.currLevel == Constants.LEVEL_02 && timeLeftGameOverDelay <= 0) {
 			gameOverTimer -= deltaTime;
 			if (gameOverTimer < 0) {
 				// disable power-up
@@ -261,12 +280,12 @@ public class WorldController extends InputAdapter {
 		if (lives > 3) {
 			lives = 3;
 		}
-		deltaTime = MathUtils.clamp(deltaTime, 0f, 0.02f);
-		handleDebugInput(deltaTime);
-		level.update(deltaTime);
-		testCollisions();
-		cameraHelper.update(deltaTime);
 
+		if (birdCount > 0) {
+			lives--;
+			birdCount = 0;
+		}
+		
 		if (isGameOver() || isGameWon()) {
 			timeLeftGameOverDelay -= deltaTime;
 			if (timeLeftGameOverDelay < 0)
@@ -292,10 +311,7 @@ public class WorldController extends InputAdapter {
 			}
 		}
 
-		if (birdCount > 0) {
-			lives--;
-			birdCount = 0;
-		}
+
 
 		if (Gdx.input.isKeyPressed(Keys.F1)) {
 			Constants.currLevel = Constants.LEVEL_01;
@@ -351,6 +367,13 @@ public class WorldController extends InputAdapter {
 
 	public boolean isGameOver() {
 		if (lives <= 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean minimumCoins() {
+		if (score < 1000) {
 			return true;
 		}
 		return false;
