@@ -28,11 +28,11 @@ public class WorldController extends InputAdapter {
 	public Bird bird;
 	public int lives;
 	public int score;
+	public int birdCount;
 	public float gameOverTimer = Constants.GAME_OVER_TIMER;
 
 	
 	public WorldController() {
-
 		init();
 	}
 
@@ -40,24 +40,21 @@ public class WorldController extends InputAdapter {
 
 
 	private void initCurrLevelReset() {
+		score = 0;
+		birdCount = 0;
 		if (Constants.currLevel == Constants.LEVEL_01) {
-			score = 0;
 			level = new Level(Constants.LEVEL_01);
-			cameraHelper.setTarget(level.bunnyHead);
 		}
 
 		else if (Constants.currLevel == Constants.LEVEL_02) {
-			score = 0;
 			level = new Level(Constants.LEVEL_02);
-			cameraHelper.setTarget(level.bunnyHead);
 		}
 
 		else if (Constants.currLevel == Constants.LEVEL_03) {
-			score = 0;
 			level = new Level(Constants.LEVEL_03);
 			// level = new level(String.format("levels/level-%02d.png", number));
-			cameraHelper.setTarget(level.bunnyHead);
 		}
+		cameraHelper.setTarget(level.bunnyHead);
 
 	}
 
@@ -65,18 +62,16 @@ public class WorldController extends InputAdapter {
 
 		if (Constants.currLevel == Constants.LEVEL_01) {
 			level.bunnyHead.position.set(1, 2);
-			cameraHelper.setTarget(level.bunnyHead);
 		}
 
 		if (Constants.currLevel == Constants.LEVEL_02) {
 			level.bunnyHead.position.set(1, 10);
-			cameraHelper.setTarget(level.bunnyHead);
 		}
 
 		if (Constants.currLevel == Constants.LEVEL_03) {
 			level.bunnyHead.position.set(1, 2);
-			cameraHelper.setTarget(level.bunnyHead);
 		}
+		cameraHelper.setTarget(level.bunnyHead);
 	}
 
 	private void onCollisionBunnyHeadWithRock(Rock rock) {
@@ -127,8 +122,8 @@ public class WorldController extends InputAdapter {
 	
 	private void onCollisionBunnyWithBird(Bird bird) {
 		bird.collected = true;
-		lives++;
-		Gdx.app.log(TAG, "Feather collected");
+		birdCount += bird.getScore();
+		Gdx.app.log(TAG, "Bird collided");
 	};
 
 	private void onCollisionBunnyWithGoal(Goal goal) {
@@ -297,6 +292,11 @@ public class WorldController extends InputAdapter {
 				initCurrLevelReset();
 				//init();
 			}
+		}
+		
+		if(birdCount>0) {
+			lives--;
+			birdCount=0;
 		}
 		
 		if(Gdx.input.isKeyPressed(Keys.F1)){

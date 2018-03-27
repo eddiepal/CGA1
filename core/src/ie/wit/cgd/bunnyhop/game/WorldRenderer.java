@@ -167,7 +167,7 @@ public class WorldRenderer implements Disposable {
             }
             batch.draw(Assets.instance.feather.feather, x, y, 50, 50, 100, 100, 0.35f, -0.35f, 0);
             batch.setColor(1, 1, 1, 1);
-            Assets.instance.fonts.defaultNormal.draw(batch, "test: " + (int) timeLeftFeatherPowerup, x + 60, y + 57);
+            Assets.instance.fonts.defaultNormal.draw(batch, " " + (int) timeLeftFeatherPowerup, x + 60, y + 57);
         }
     }
 }
